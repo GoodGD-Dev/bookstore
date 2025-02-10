@@ -17,9 +17,19 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include, re_path
+from rest_framework import routers
 
+# Importação dos viewsets
+from order.viewsets import OrderViewSet
+from product.viewsets import ProductViewSet
+
+# Criando roteadores para os endpoints da API
+router = routers.SimpleRouter()
+router.register(r'order', OrderViewSet, basename='order')
+router.register(r'product', ProductViewSet, basename='product')
+
+# Definição das URLs principais
 urlpatterns = [
     path("admin/", admin.site.urls),
-    re_path("bookstore/(?P<version>(v1|v2))", include("order.urls")),
-    re_path("bookstore/(?P<version>(v1|v2))", include("product.urls")),
+    re_path(r"^bookstore/(?P<version>(v1|v2))/", include(router.urls)),  # Inclui todas as rotas do DRF
 ]
