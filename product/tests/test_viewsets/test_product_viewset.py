@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import json
 
 from rest_framework.test import APITestCase, APIClient
@@ -16,8 +19,8 @@ class TestProductViewSet(APITestCase):
 
     def setUp(self):
         self.user = UserFactory()
-        token = Token.objects.create(user=self.user)
-        token.save()
+        token = Token.objects.create(user=self.user) #added
+        token.save() #added
 
         self.product = ProductFactory(
             title='pro controller',
@@ -25,8 +28,8 @@ class TestProductViewSet(APITestCase):
         )
 
     def test_get_all_product(self):
-        token = Token.objects.get(user__username=self.user.username)
-        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key)
+        token = Token.objects.get(user__username=self.user.username) #added
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + token.key) #added
         response = self.client.get(
             reverse('product-list', kwargs={'version': 'v1'})
         )
@@ -45,7 +48,7 @@ class TestProductViewSet(APITestCase):
         data = json.dumps({
             'title': 'notebook',
             'price': 800.00,
-            'categories': [category.id]
+            'categories_id': [ category.id ]
         })
 
         response = self.client.post(
@@ -60,6 +63,7 @@ class TestProductViewSet(APITestCase):
 
         self.assertEqual(created_product.title, 'notebook')
         self.assertEqual(created_product.price, 800.00)
+
 
 
 
