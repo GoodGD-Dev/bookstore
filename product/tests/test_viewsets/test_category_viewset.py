@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import json
 
 from rest_framework.test import APITestCase, APIClient
@@ -41,4 +44,5 @@ class CategoryViewSet(APITestCase):
         created_category = Category.objects.get(title='technology')
 
         self.assertEqual(created_category.title, 'technology')
+
 

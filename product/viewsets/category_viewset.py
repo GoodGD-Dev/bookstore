@@ -1,3 +1,7 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+  
 from rest_framework.viewsets import ModelViewSet
 
 from product.models import Category 
@@ -9,3 +13,4 @@ class CategoryViewSet(ModelViewSet):
 
     def get_queryset(self):
         return Category.objects.all().order_by('id')
+
