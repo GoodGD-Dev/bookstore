@@ -1,5 +1,5 @@
 # `python-base` sets up all our shared environment variables
-FROM python:3.8.1-slim as python-base
+FROM python:3.8-slim as python-base
 
     # python
 ENV PYTHONUNBUFFERED=1 \
@@ -54,7 +54,7 @@ WORKDIR /app
 COPY . /app/
 
 # Garantir que o Django e outras dependências essenciais estejam instaladas
-RUN pip install django gunicorn psycopg2-binary
+RUN pip install --no-cache-dir django gunicorn psycopg2-binary
 
 # Adicionar coleta de arquivos estáticos
 RUN python manage.py collectstatic --noinput
