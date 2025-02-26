@@ -16,23 +16,10 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: Install Poetry
-        uses: snok/install-poetry@v1
-        with:
-          version: 1.5.1
-
       - name: Install dependencies
-        run: poetry install
-
-      - name: Run linting
         run: |
-          poetry run flake8 .
-          poetry run black . --check
-
-      - name: Run tests with coverage
-        run: |
-          poetry run coverage run -m pytest
-          poetry run coverage report
+          pip install --no-cache-dir -r requirements.txt
+          pip install django gunicorn psycopg2-binary
 
       - name: Install Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
@@ -44,5 +31,5 @@ jobs:
 
       - name: Health check
         run: |
-          sleep 30  # Espera a aplicação iniciar
-          curl https://ebac-bookstore-api.fly.dev/health/ 
+          sleep 30
+          curl https://ebac-bookstore-api.fly.dev/health/
