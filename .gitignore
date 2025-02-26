@@ -127,3 +127,13 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.pyc
+__pycache__
+.env
+.venv
+*.sqlite3
+.coverage
+htmlcov/
+dist/
+.pytest_cache/
