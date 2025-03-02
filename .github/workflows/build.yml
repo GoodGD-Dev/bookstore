@@ -23,11 +23,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Instalar Poetry e dependências
+      - name: Instalar Poetry
         run: |
           python -m pip install --upgrade pip
           curl -sSL https://install.python-poetry.org | python -
-          python -m pip install --no-cache-dir django gunicorn psycopg2-binary
+          echo "export PATH=$HOME/.local/bin:$PATH" >> $GITHUB_ENV
 
       - name: Configurar Poetry
         run: |
