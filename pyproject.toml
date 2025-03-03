@@ -2,7 +2,7 @@
 name = "bookstore"
 version = "0.1.0"
 description = "Bookstore API"
-authors = ["Daniel Santos <drsantos20@gmail.com>"]
+authors = ["Dionatha Goulart <dionatha.work@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = ">=3.8,<4.0"
@@ -20,7 +20,7 @@ dj-database-url = "^2.1.0"
 setuptools = ">=70.0.0"
 sqlparse = ">=0.5.0"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 pytest = "^6.2.5"
 factory-boy = "^3.2.0"
 
