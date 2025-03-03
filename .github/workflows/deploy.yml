@@ -14,12 +14,13 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.8'
+          python-version: "3.8"
 
       - name: Install dependencies
         run: |
-          pip install --no-cache-dir -r requirements.txt
-          pip install django gunicorn psycopg2-binary
+          pip install poetry==1.5.1
+          poetry config virtualenvs.create false
+          poetry install --no-interaction --no-root
 
       - name: Install Flyctl
         uses: superfly/flyctl-actions/setup-flyctl@master
